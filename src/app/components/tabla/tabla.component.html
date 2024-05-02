@@ -1,0 +1,61 @@
+<div class="container">
+  <h2>Tabla de Juegos</h2>
+  
+  
+  <div class="mb-3">
+    <label for="idBusqueda" class="form-label">Buscar por ID:</label>
+    <div class="input-group">
+      <input type="text" class="form-control" id="idBusqueda" name="idBusqueda" [(ngModel)]="idBusqueda">
+      <button type="button" class="btn btn-primary" (click)="buscarJuegoPorId()">Buscar</button>
+    </div>
+  </div>
+
+
+  <div *ngIf="juegoSeleccionado">
+    <h3>Detalle del Juego Seleccionado:</h3>
+    <p>ID: {{juegoSeleccionado.id}}</p>
+    <p>Nombre: {{juegoSeleccionado.nombre}}</p>
+    <p>Precio: {{juegoSeleccionado.precio}}</p>
+    <button type="button" class="btn btn-primary" (click)="mostrarImagen(juegoSeleccionado.url)">Ver Imagen</button>
+    <div *ngIf="imagenVisible && imagenUrl === juegoSeleccionado.url">
+      <img [src]="imagenUrl" alt="Imagen" style="max-width: 300px;">
+    </div>
+  </div>
+</div>
+  
+  
+  <table class="table table-striped" *ngIf="!juegoSeleccionado">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Precio</th>
+        <th>Imagen</th>
+        <th>Detalles</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of juegos">
+        <td>{{item.id}}</td>
+        <td>{{item.nombre}}</td>
+        <td>{{item.precio}}</td>
+        <td>
+          <button type="button" class="btn btn-primary" (click)="mostrarImagen(item.url)">Ver Imagen</button>
+          <div *ngIf="imagenVisible && imagenUrl === item.url">
+            <img [src]="imagenUrl" alt="Imagen" style="max-width: 300px;">
+          </div>
+        </td>
+        <td>
+          <button [routerLink]="['/gamingDetalle', item.id]" class="btn btn-info">Detalles de juegos</button>
+        </td>
+
+        
+      </tr>
+    </tbody>
+  </table>
+  <td>
+    <button [routerLink]="['/maxi']" class="btn btn-info">Busqueda de Maximos y minimos </button>
+  </td>
+  
+  
+  

@@ -1,0 +1,8 @@
+<div *ngIf="juegos" class="game-details">
+    <h1>{{ juegos.nombre }}</h1>
+    
+    <p class="game-price">Precio: {{ juegos.precio }}</p>
+    <img [src]="juegos.url" alt="{{ juegos.nombre }} poster" class="game-image" />
+
+    <button class="back-button" [routerLink]="['/gaming']">Regresar</button>
+</div>
